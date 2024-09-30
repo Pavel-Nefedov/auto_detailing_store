@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}Товары{% endblock %}
+
+{% block content %}
+<section>
+    <h2>Наши товары</h2>
+    <ul class="product-list">
+        {% for product in products %}
+        <li>
+            <h3>{{ product.name }}</h3>
+            <p>{{ product.description }}</p>
+            <p>Цена: {{ product.price }} Р</p>
+            <a href="/products/{{ product.id }}/buy/" class="button">Добавить в корзину</a>
+        </li>
+        {% endfor %}
+    </ul>
+</section>
+{% endblock %}
+

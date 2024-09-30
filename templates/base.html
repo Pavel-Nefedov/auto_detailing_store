@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ru">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'styles.css' %}"> <!-- Подключение CSS -->
+    <title>{% block title %}Магазин детейлинга{% endblock %}</title>
+</head>
+<body>
+    <header>
+        <h1>Магазин для детейлинга автомобилей</h1>
+        <nav>
+            <ul>
+                <li><a href="/">Главная</a></li>
+                <li><a href="/products/">Товары</a></li>
+                <li><a href="/orders/">Заказы</a></li>
+                <li><a href="/users/">Профиль</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+    <footer>
+        <p>&copy; 2023 Магазин для детейлинга. Все права защищены.</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}Личный кабинет{% endblock %}
+
+{% block content %}
+<section>
+    <h2>Личный кабинет</h2>
+    <li><a href="/auth/">Вход</a></li>
+    <p>Добро пожаловать, {{ user.username }}!</p>
+    <p>Ваш email: {{ user.email }}</p>
+    <h3>История заказов</h3>
+    <ul>
+        {% for order in orders %}
+        <li>
+            <p>Заказ #{{ order.id }} - {{ order.status }}</p>
+            <p>Сумма: {{ order.total }} Р</p>
+            <p>Дата: {{ order.created_at }}</p>
+        </li>
+        {% endfor %}
+    </ul>
+    <a href="/orders/" class="button">Посмотреть все заказы</a>
+</section>
+{% endblock %}
