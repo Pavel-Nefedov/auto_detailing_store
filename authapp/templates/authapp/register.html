@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}Вход{% endblock %}
+
+{% block content %}
+<section>
+    <h2>Регмстрация</h2>
+    <form class="form-horizontal" action="{% url 'authapp:register' %}" method="post">
+        {% csrf_token %}
+        {{ register_form.as_p }}
+        <br>
+        <input class="form-control" type="submit" value="зарегистрироваться">
+    </form>
+</section>
+{% endblock %}

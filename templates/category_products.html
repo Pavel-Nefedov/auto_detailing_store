@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}Товары{% endblock %}
+
+{% block content %}
+<section>
+    <h2>Товары категории {{category.name}}</h2>
+    <ul class="product-list">
+        {% for product in products %}
+        {% if product.quantity != 0 %}
+        <li>
+            <h3>{{ product.name }}</h3>
+            <p>{{ product.description }}</p>
+            <p>Цена: {{product.price}} Р</p>
+             <a href="{% url 'basket:add' pk=product.pk %}" class="red-button">
+                    Добавить в корзину <i class="fa fa-chevron-right" aria-hidden="true"></i>
+             </a>
+        </li>
+        {% endif %}
+        {% endfor %}
+    </ul>
+</section>
+{% endblock %}
