@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     # Мои приложения
     'authapp',
     'mainapp',
+    'basketapp',
     'orders',
     'products',
     'users',
@@ -46,6 +47,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
+
+AUTH_USER_MODEL = 'authapp.ShopUser'
+LOGIN_URL = '/auth/login/'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

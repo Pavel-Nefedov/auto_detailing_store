@@ -9,7 +9,7 @@
     <ul class="product-list">
         {% for category in categories %}
         <li>
-            <a href="/products/{{ product.id }}/buy/" class="button">
+            <a href="/products/category/{{ category.id }}" class="button">
                 <h3>{{ category.name }}</h3>
             <p>{{ category.description }}</p>
             </a>

@@ -1,13 +1,15 @@
-"""Определяет схемы URL для orders"""
+from django.urls import path
 
-from django.urls import path, re_path
+import orders.views as ordersapp
 
-from . import views
+app_name = 'orders'
 
-app_name = "products"
 urlpatterns = [
-    # Домашняя страница
-    path('', views.orders, name='index'),
-    # path('about', views.about, kwargs={"name":"Tom", "age": 38}),
-    # path('avd', views.avd),
+    path('', ordersapp.OrderList.as_view(), name='index'),
+    path('forming/complete/<int:pk>/', ordersapp.order_forming_complete, name='order_forming_complete'),
+    path('create/', ordersapp.OrderCreate.as_view(), name='order_create'),
+    path('read/<int:pk>/', ordersapp.OrderRead.as_view(), name='order_read'),
+    path('update/<int:pk>/', ordersapp.OrderUpdate.as_view(), name='order_update'),
+    path('delete/<int:pk>/', ordersapp.OrderDelete.as_view(), name='order_delete'),
+    path('product/<int:pk>/price/', ordersapp.get_product_price)
 ]

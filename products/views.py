@@ -70,3 +70,52 @@ def product(request, pk):
     }
 
     render(request, '../templates/product_detail.html', content)
+
+def category_product(request, pk=None, page=1):
+    title = 'продукты'
+
+    categories = Category.objects.all()
+    products = Product.objects.all().order_by('price')
+
+    if pk is not None:
+        if pk == 0:
+            products = Product.objects.all().order_by('price')
+            category = {'pk': 0, 'name': 'Все'}
+        else:
+            category = get_object_or_404(Category, pk=pk)
+            products = Product.objects.filter(category__pk=pk).order_by('price')
+
+        paginator = Paginator(products, 2)
+
+        try:
+            products_paginator = paginator.page(page)
+        except PageNotAnInteger:
+            products_paginator = paginator.page(1)
+        except EmptyPage:
+            products_paginator = paginator.page(paginator.num_pages)
+
+        context = {
+            'title': title,
+            'categories': categories,
+            'products': products_paginator,
+            'category': category,
+        }
+
+        return render(request, '../templates/category_products.html', context)
+
+    paginator = Paginator(products, 2)
+
+    try:
+        products_paginator = paginator.page(page)
+    except PageNotAnInteger:
+        products_paginator = paginator.page(1)
+    except EmptyPage:
+        products_paginator = paginator.page(paginator.num_pages)
+
+    context = {
+        'title': title,
+        'categories': categories,
+        'products': products
+    }
+
+    return render(request, '../templates/category_products.html', context)

@@ -26,14 +26,14 @@ class Product(models.Model):
     image = models.ImageField(upload_to='products/%Y/%m/%d', blank=True)
     description = models.TextField(blank=True)
     price = models.DecimalField(max_digits=10, decimal_places=2)
-    stock = models.PositiveIntegerField()  #остаток на складе
+    quantity = models.PositiveIntegerField()  #остаток на складе
     available = models.BooleanField(default=True)  #доступеность продукта в каталоге
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 
     class Meta:
-        ordering = ('name',)
-        index_together = (('id', 'slug'),)
+        ordering = ('name'),
+        index_together = (('id', 'slug')),
 
     def get_absolute_url(self):
         return reverse('shop:product_detail',
